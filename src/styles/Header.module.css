@@ -1,0 +1,28 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+
+  background-color: var(--main-black);
+  color: var(--main-white);
+}
+
+.nav ul {
+  display: flex;
+}
+
+.nav li {
+  margin-right: 1rem;
+  line-height: 2rem;
+
+  font-size: var(--main-font-nav);
+}
+
+.nav div {
+  width: 4rem;
+  height: 2rem;
+
+  background-image: url("../../public/logo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

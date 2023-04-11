@@ -10,6 +10,7 @@
   box-sizing: border-box;
   flex-shrink: 0;
 }
+
 :root {
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
@@ -19,11 +20,17 @@
   overflow-wrap: break-word;
   -moz-tab-size: 4;
   tab-size: 4;
+
+  --main-black: #000000;
+  --main-white: #fbfcff;
+  --main-font-nav: 18px;
 }
+
 html,
 body {
   height: 100%;
 }
+
 img,
 picture,
 video,
@@ -32,15 +39,24 @@ svg {
   display: block;
   max-width: 100%;
 }
+
 button {
   background: none;
   border: 0;
   cursor: pointer;
 }
+
 a {
   text-decoration: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+ul,
+li {
+  list-style-type: none;
+  padding-left: 0;
 }
