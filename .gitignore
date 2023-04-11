@@ -49,7 +49,11 @@ web_modules/
 .rts2_cache_es/
 .rts2_cache_umd/
 
+# Next
 .next/
+
+# Github
+.github/
 
 forge.config.js
 /test-results/
