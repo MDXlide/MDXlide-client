@@ -1,7 +1,7 @@
 import Link from "next/link";
-import navStyles from "@/styles/Header.module.css";
+import navStyles from "@/styles/Nav.module.css";
 
-export default function Header() {
+export default function Nav() {
   return (
     <nav className={navStyles.nav}>
       <ul>
@@ -18,7 +18,7 @@ export default function Header() {
           <Link href="/share">Share</Link>
         </li>
       </ul>
-      <div></div>
+      <div className="logo"></div>
     </nav>
   );
 }
