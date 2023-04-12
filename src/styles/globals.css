@@ -23,12 +23,14 @@
 
   --main-black: #000000;
   --main-white: #fbfcff;
+  --main-shadow: rgba(0, 71, 171, 0.3);
   --main-font-nav: 18px;
 }
 
 html,
 body {
   height: 100%;
+  background-color: #eeeeee;
 }
 
 img,
