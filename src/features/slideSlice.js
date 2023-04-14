@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
-  text: `가나다`,
+  text: `<div style={{padding: '1rem', backgroundColor: 'violet'}}>
+  박스 예시입니다.
+</div>`,
 };
 
 export const slideSlice = createSlice({
