@@ -4,27 +4,37 @@ import Nav from "@/components/Nav.js";
 import MdxEditor from "@/components/MdxEditor";
 import MdxSlide from "@/components/MdxSlide";
 
-import { addMainChapter, addSubChapter } from "../features/slideSlice";
-import { setMainPosition, setSubPosition } from "@/features/postionSlice";
+import { addRowChapter, addcolumnChapter } from "../features/slideSlice";
+import { setRow, setColumn } from "@/features/postionSlice";
+import {
+  isRowAnimation,
+  isColumnAnimation,
+} from "@/features/slideAnimationSlice";
 
 export default function Editor() {
   const dispatch = useDispatch();
-  const { mainPosition, subPosition } = useSelector((state) => state.position);
+  const { row, column } = useSelector((state) => state.position);
 
   function handleAddMainChapter() {
-    const newMainPosition = mainPosition + 1;
+    const newRow = row + 1;
     const code = "";
 
-    dispatch(addMainChapter({ code, newMainPosition, subPosition }));
-    dispatch(setMainPosition(newMainPosition));
+    dispatch(isRowAnimation(true));
+
+    setTimeout(() => {
+      dispatch(addRowChapter({ code, newRow, column }));
+      dispatch(setRow(newRow));
+    }, 500);
+
+    setTimeout(() => dispatch(isRowAnimation(false)), 1000);
   }
 
   function handleAddSubChapter() {
-    const newSubPosition = subPosition + 1;
+    const newColumn = column + 1;
     const code = "";
 
-    dispatch(addSubChapter({ code, mainPosition, newSubPosition }));
-    dispatch(setSubPosition(newSubPosition));
+    dispatch(addcolumnChapter({ code, row, newColumn }));
+    dispatch(setColumn(newColumn));
   }
 
   return (

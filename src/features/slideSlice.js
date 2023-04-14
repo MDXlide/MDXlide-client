@@ -8,6 +8,10 @@ const initialState = {
       userCode:
         "<div style={{padding: '1rem', backgroundColor: 'violet'}}>박스 예시입니다.</div>",
     },
+    {
+      position: [1, 0],
+      userCode: "# 두번째 슬라이드입니다",
+    },
   ],
 };
 
@@ -16,28 +20,27 @@ export const slideSlice = createSlice({
   initialState,
   reducers: {
     setChapterText: (state, action) => {
-      const { code, mainPosition, subPosition } = action.payload;
+      const { code, row, column } = action.payload;
       const targetChapter = state.chapters.filter(
         (chapter) =>
-          chapter.position[0] === mainPosition &&
-          chapter.position[1] === subPosition,
+          chapter.position[0] === row && chapter.position[1] === column,
       )[0];
 
       targetChapter.userCode = code;
     },
-    addMainChapter: (state, action) => {
-      const { code, newMainPosition, subPosition } = action.payload;
+    addRowChapter: (state, action) => {
+      const { code, newRow, column } = action.payload;
 
       state.chapters.push({
-        position: [newMainPosition, subPosition],
+        position: [newRow, column],
         userCode: code,
       });
     },
-    addSubChapter: (state, action) => {
-      const { code, mainPosition, newSubPosition } = action.payload;
+    addcolumnChapter: (state, action) => {
+      const { code, row, newColumn } = action.payload;
 
       state.chapters.push({
-        position: [mainPosition, newSubPosition],
+        position: [row, newColumn],
         userCode: code,
       });
     },
@@ -52,7 +55,7 @@ export const slideSlice = createSlice({
   },
 });
 
-export const { setChapterText, addMainChapter, addSubChapter } =
+export const { setChapterText, addRowChapter, addcolumnChapter } =
   slideSlice.actions;
 
 export default slideSlice.reducer;

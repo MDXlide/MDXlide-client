@@ -2,23 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
-  mainPosition: 0,
-  subPosition: 0,
+  row: 0,
+  column: 0,
 };
 
 export const positionSlice = createSlice({
   name: "position",
   initialState,
   reducers: {
-    setMainPosition: (state, action) => {
-      const newMainPosition = action.payload;
+    setRow: (state, action) => {
+      const newRow = action.payload;
 
-      state.mainPosition = newMainPosition;
+      state.row = newRow;
     },
-    setSubPosition: (state, action) => {
-      const newSubPosition = action.payload;
+    setColumn: (state, action) => {
+      const newColumn = action.payload;
 
-      state.subPosition = newSubPosition;
+      state.column = newColumn;
     },
   },
   extraReducers: {
@@ -31,6 +31,6 @@ export const positionSlice = createSlice({
   },
 });
 
-export const { setMainPosition, setSubPosition } = positionSlice.actions;
+export const { setRow, setColumn } = positionSlice.actions;
 
 export default positionSlice.reducer;

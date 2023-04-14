@@ -1,29 +1,27 @@
 import { useSelector, useDispatch } from "react-redux";
-import codeStyles from "@/styles/CodeEditor.module.css";
+import styles from "@/styles/MdxEditor.module.css";
 
 import { setChapterText } from "@/features/slideSlice";
 
 export default function MdxEditor() {
   const dispatch = useDispatch();
   const { chapters } = useSelector((state) => state.slide);
-  const { mainPosition, subPosition } = useSelector((state) => state.position);
+  const { row, column } = useSelector((state) => state.position);
 
   const targetChapter = chapters.filter(
-    (chapter) =>
-      chapter.position[0] === mainPosition &&
-      chapter.position[1] === subPosition,
+    (chapter) => chapter.position[0] === row && chapter.position[1] === column,
   );
 
   function handleChangeUserCode(e) {
     const code = e.target.value;
 
-    dispatch(setChapterText({ code, mainPosition, subPosition }));
+    dispatch(setChapterText({ code, row, column }));
   }
 
   return (
     <>
-      <section className={codeStyles.codeEditor}>
-        <div className={codeStyles.title}>
+      <section className={styles.codeEditor}>
+        <div className={styles.title}>
           <h3>MDX CODE</h3>
           <span>what mdx?</span>
         </div>
