@@ -2,16 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
-  text: `<div style={{padding: '1rem', backgroundColor: 'violet'}}>
-  박스 예시입니다.
-</div>`,
+  chapters: [
+    {
+      position: [0, 0],
+      userCode:
+        "<div style={{padding: '1rem', backgroundColor: 'violet'}}>박스 예시입니다.</div>",
+    },
+  ],
 };
 
-export const slideSlice = createSlice({
-  name: "slide",
+export const nowSlideSlice = createSlice({
+  name: "nowSlide",
   initialState,
   reducers: {
-    setSlideText: (state, action) => {
+    setChapterText: (state, action) => {
       state.text = `${action.payload}`;
     },
   },
@@ -25,6 +29,6 @@ export const slideSlice = createSlice({
   },
 });
 
-export const { setSlideText } = slideSlice.actions;
+export const { setChapterText } = nowSlideSlice.actions;
 
-export default slideSlice.reducer;
+export default nowSlideSlice.reducer;

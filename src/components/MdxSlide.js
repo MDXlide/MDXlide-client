@@ -6,13 +6,23 @@ import { VFile } from "vfile";
 import * as runtime from "react/jsx-runtime";
 import { evaluate } from "@mdx-js/mdx";
 
-export default function CodeSlide() {
-  const { text } = useSelector((state) => state.slide);
+export default function MdxSlide() {
+  const { chapters } = useSelector((state) => state.slide);
+  const { mainPosition, subPosition } = useSelector((state) => state.position);
   const [mdx, setMdx] = useState(null);
+
+  const targetChapter = chapters.filter(
+    (chapter) =>
+      chapter.position[0] === mainPosition &&
+      chapter.position[1] === subPosition,
+  );
 
   useEffect(() => {
     async function useMdx() {
-      const file = new VFile({ basename: "example.mdx", value: text });
+      const file = new VFile({
+        basename: "example.mdx",
+        value: targetChapter[0].userCode,
+      });
 
       let result;
 
@@ -32,7 +42,7 @@ export default function CodeSlide() {
     }
 
     useMdx();
-  }, [text]);
+  }, [chapters]);
 
   return <div className={Styles.slide}>{mdx && mdx}</div>;
 }
