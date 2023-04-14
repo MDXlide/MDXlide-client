@@ -24,6 +24,7 @@
   --main-black: #000000;
   --main-white: #fbfcff;
   --main-shadow: rgba(0, 71, 171, 0.3);
+  --main-blue: #005bdb;
   --main-font-nav: 18px;
 }
 
@@ -41,12 +42,6 @@ svg {
   display: block;
   max-width: 100%;
 }
-/* 
-button {
-  background: none;
-  border: 0;
-  cursor: pointer;
-} */
 
 a {
   text-decoration: none;

@@ -1,0 +1,34 @@
+.slideEditorWrapper {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+
+  margin-top: 10vh;
+}
+
+.slideEditorWrapper button {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  font-weight: 900;
+
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.slideEditorWrapper button:hover {
+  color: var(--main-blue);
+  transition: all 0.5s;
+}
+
+.rightBtn {
+  position: absolute;
+  right: 2%;
+  top: 45%;
+}
+
+.bottomBtn {
+  position: absolute;
+  right: 30%;
+  bottom: -20%;
+}
