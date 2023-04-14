@@ -11,12 +11,35 @@ const initialState = {
   ],
 };
 
-export const nowSlideSlice = createSlice({
-  name: "nowSlide",
+export const slideSlice = createSlice({
+  name: "slide",
   initialState,
   reducers: {
     setChapterText: (state, action) => {
-      state.text = `${action.payload}`;
+      const { code, mainPosition, subPosition } = action.payload;
+      const targetChapter = state.chapters.filter(
+        (chapter) =>
+          chapter.position[0] === mainPosition &&
+          chapter.position[1] === subPosition,
+      )[0];
+
+      targetChapter.userCode = code;
+    },
+    addMainChapter: (state, action) => {
+      const { code, newMainPosition, subPosition } = action.payload;
+
+      state.chapters.push({
+        position: [newMainPosition, subPosition],
+        userCode: code,
+      });
+    },
+    addSubChapter: (state, action) => {
+      const { code, mainPosition, newSubPosition } = action.payload;
+
+      state.chapters.push({
+        position: [mainPosition, newSubPosition],
+        userCode: code,
+      });
     },
   },
   extraReducers: {
@@ -29,6 +52,7 @@ export const nowSlideSlice = createSlice({
   },
 });
 
-export const { setChapterText } = nowSlideSlice.actions;
+export const { setChapterText, addMainChapter, addSubChapter } =
+  slideSlice.actions;
 
-export default nowSlideSlice.reducer;
+export default slideSlice.reducer;

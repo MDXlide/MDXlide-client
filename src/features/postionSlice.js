@@ -10,8 +10,16 @@ export const positionSlice = createSlice({
   name: "position",
   initialState,
   reducers: {
-    setMainPosition: (state, action) => {},
-    setSubPosition: (state, action) => {},
+    setMainPosition: (state, action) => {
+      const newMainPosition = action.payload;
+
+      state.mainPosition = newMainPosition;
+    },
+    setSubPosition: (state, action) => {
+      const newSubPosition = action.payload;
+
+      state.subPosition = newSubPosition;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
