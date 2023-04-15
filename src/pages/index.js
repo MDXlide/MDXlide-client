@@ -25,7 +25,6 @@ export default function Editor() {
       dispatch(addRowChapter({ code, newRow, column }));
       dispatch(setRow(newRow));
     }, 500);
-
     setTimeout(() => dispatch(isRowAnimation(false)), 1000);
   }
 

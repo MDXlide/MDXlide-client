@@ -6,15 +6,37 @@ import { VFile } from "vfile";
 import * as runtime from "react/jsx-runtime";
 import { evaluate } from "@mdx-js/mdx";
 
-export default function MdxSlide({ layout }) {
+const defaultPlayPosition = { playRow: 0, playColumn: 0 };
+
+export default function MdxSlide({ layout, playPosition }) {
   const { chapters } = useSelector((state) => state.slide);
   const { row, column } = useSelector((state) => state.position);
-  const { rowAnimation, columnAnimation } = useSelector(
+  const { rowNext, rowPrev, columnNext, columnPrev } = useSelector(
     (state) => state.slideAnimation,
   );
+  const { playRow, playColumn } = playPosition
+    ? playPosition
+    : defaultPlayPosition;
   const [mdxResult, setMdxResult] = useState(null);
-  const targetChapter = chapters.filter(
-    (chapter) => chapter.position[0] === row && chapter.position[1] === column,
+
+  function checkTargetChapter(chapterRow, chapterColoumn) {
+    if (layout === "play") {
+      if (chapterRow === playRow && chapterColoumn === playColumn) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if (chapterRow === row && chapterColoumn === column) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  const targetChapter = chapters.filter((chapter) =>
+    checkTargetChapter(chapter.position[0], chapter.position[1]),
   );
 
   useEffect(() => {
@@ -42,13 +64,16 @@ export default function MdxSlide({ layout }) {
     }
 
     useMdx();
-  }, [chapters]);
+  }, [chapters, playPosition]);
 
   return (
     <div
       className={`${layout === "play" ? styles.playSlide : styles.slide} ${
-        rowAnimation && styles.slideLeft
-      }`}
+        rowNext && styles.rowNext
+      } ${columnNext && styles.columnNext} ${rowPrev && styles.rowPrev} ${
+        columnPrev && styles.columnPrev
+      }
+      `}
     >
       {mdxResult && mdxResult}
     </div>

@@ -12,6 +12,10 @@ const initialState = {
       position: [1, 0],
       userCode: "# 두번째 슬라이드입니다",
     },
+    {
+      position: [0, 1],
+      userCode: "# column 두 번째",
+    },
   ],
 };
 

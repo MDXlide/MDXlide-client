@@ -2,19 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
-  rowAnimation: false,
-  columnAnimation: false,
+  rowNext: false,
+  rowPrev: false,
+  columnNext: false,
+  columnPrev: false,
 };
 
 export const slideAnimationSlice = createSlice({
   name: "slideAnimation",
   initialState,
   reducers: {
-    isRowAnimation: (state, action) => {
-      state.rowAnimation = action.payload;
+    isRowNext: (state, action) => {
+      state.rowNext = action.payload;
     },
-    isColumnAnimation: (state, action) => {
-      state.subPosition = action.payload;
+    isRowPrev: (state, action) => {
+      state.rowPrev = action.payload;
+    },
+    isColumnNext: (state, action) => {
+      state.columnNext = action.payload;
+    },
+    isColumnPrev: (state, action) => {
+      state.columnPrev = action.payload;
     },
   },
   extraReducers: {
@@ -27,7 +35,7 @@ export const slideAnimationSlice = createSlice({
   },
 });
 
-export const { isRowAnimation, isColumnAnimation } =
+export const { isRowNext, isRowPrev, isColumnNext, isColumnPrev } =
   slideAnimationSlice.actions;
 
 export default slideAnimationSlice.reducer;

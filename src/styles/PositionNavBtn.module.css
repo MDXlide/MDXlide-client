@@ -1,0 +1,33 @@
+.positionNav button {
+  position: absolute;
+
+  background-color: inherit;
+  border: none;
+  font-size: 24px;
+  color: var(--main-white);
+  transition: color 0.6s;
+}
+
+.positionNav button:hover {
+  color: var(--main-blue);
+}
+
+.topBtn {
+  right: 4rem;
+  bottom: 6rem;
+}
+
+.buttomBtn {
+  right: 4rem;
+  bottom: 2rem;
+}
+
+.rightBtn {
+  right: 2.1rem;
+  bottom: 4rem;
+}
+
+.leftBtn {
+  right: 6.2rem;
+  bottom: 4rem;
+}
