@@ -6,7 +6,7 @@ import { VFile } from "vfile";
 import * as runtime from "react/jsx-runtime";
 import { evaluate } from "@mdx-js/mdx";
 
-export default function MdxSlide() {
+export default function MdxSlide({ layout }) {
   const { chapters } = useSelector((state) => state.slide);
   const { row, column } = useSelector((state) => state.position);
   const { rowAnimation, columnAnimation } = useSelector(
@@ -45,7 +45,11 @@ export default function MdxSlide() {
   }, [chapters]);
 
   return (
-    <div className={`${styles.slide} ${rowAnimation && styles.slideLeft}`}>
+    <div
+      className={`${layout === "play" ? styles.playSlide : styles.slide} ${
+        rowAnimation && styles.slideLeft
+      }`}
+    >
       {mdxResult && mdxResult}
     </div>
   );
