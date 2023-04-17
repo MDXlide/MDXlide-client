@@ -1,0 +1,59 @@
+.wrapper {
+  position: relative;
+  background-color: var(--main-white);
+  box-shadow: 0 0 5px 2px var(--main-shadow);
+
+  transition: all 0.5s;
+}
+
+.wrapper:hover {
+  transform: translateY(-2%);
+  box-shadow: 0 0 10px 10px var(--main-shadow);
+}
+
+.mdx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+
+  color: var(--main-white);
+  background-color: var(--main-black);
+}
+
+/* describe */
+
+.describe h3 {
+  padding: 1rem;
+}
+
+.describe .deleteBtn {
+  position: absolute;
+  bottom: 4.2rem;
+  right: 1rem;
+  width: 3rem;
+  height: 2rem;
+
+  border: none;
+  background-color: inherit;
+
+  transition: all 0.4s;
+}
+
+.describe .deleteBtn:hover {
+  color: var(--main-blue);
+  fill: var(--main-blue);
+  cursor: pointer;
+}
+
+.describe .lastSaveTime {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+
+  font-size: 14px;
+}
+
+.describe svg {
+  margin-right: 3px;
+}

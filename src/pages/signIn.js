@@ -1,7 +1,7 @@
 import styles from "@/styles/pages/signin.module.css";
 
 const LOGO_IMG_PATH = "/logo.png";
-const LOGO_ALT = "logo";
+const LOGO_ALT = "MDXSlide logo";
 const GOOGLE_LOGO_IMG_PATH = "/google.png";
 const GOOGLE_LOGO_ALT = "google logo";
 
