@@ -15,18 +15,15 @@ export default function Nav() {
     <nav className={navStyles.nav}>
       <ul>
         <li>
-          <Link href="/">HOME</Link>
+          <Link href="/main">HOME</Link>
         </li>
         <li>
           <Link href="/play" onClick={handleFullScreen}>
-            Play
+            PLAY
           </Link>
         </li>
         <li>
-          <Link href="/full">Full</Link>
-        </li>
-        <li>
-          <Link href="/share">Share</Link>
+          <Link href="/full">FULL</Link>
         </li>
       </ul>
       <div className="logo"></div>

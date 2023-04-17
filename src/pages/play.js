@@ -37,7 +37,7 @@ export default function play() {
   }, [playRow]);
 
   useEffect(() => {
-    if (!playColumn) {
+    if (!playColumn && !playRow) {
       setProgress(0);
       return;
     }

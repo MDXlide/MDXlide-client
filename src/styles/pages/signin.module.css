@@ -1,0 +1,71 @@
+.wrapper {
+  display: flex;
+}
+
+.wrapper section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50vw;
+  min-width: 420px;
+  height: 100vh;
+}
+
+/* wallpaper */
+
+.leftBox {
+  background-color: var(--main-black);
+}
+
+.leftBox .logo {
+  width: 30vw;
+  min-width: 420px;
+}
+
+/* signin */
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 20vw;
+  height: 70vh;
+  min-width: 25rem;
+
+  background-color: var(--main-white);
+  box-shadow: 0 0 10px 5px var(--main-shadow);
+}
+
+.signin h1 {
+  font-size: 42px;
+  margin-bottom: 3rem;
+}
+
+.signin button {
+  width: 20rem;
+  padding: 0.6rem 0;
+  margin-top: 1rem;
+
+  background-color: inherit;
+  border: 1px solid var(--main-black);
+  font-size: 16px;
+  vertical-align: middle;
+
+  transition: all 0.4s;
+}
+
+.signin button:hover {
+  color: var(--main-white);
+  background-color: var(--main-blue);
+  cursor: pointer;
+}
+
+.googleLogo {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  height: 1.2rem;
+}
