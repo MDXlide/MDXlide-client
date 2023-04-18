@@ -15,7 +15,7 @@ export default function Editor() {
   const dispatch = useDispatch();
   const { row, column } = useSelector((state) => state.position);
 
-  function handleAddMainChapter() {
+  function handleAddRowChapter() {
     const newRow = row + 1;
     const code = "";
 
@@ -28,7 +28,7 @@ export default function Editor() {
     setTimeout(() => dispatch(isRowAnimation(false)), 1000);
   }
 
-  function handleAddSubChapter() {
+  function handleAddColumnChapter() {
     const newColumn = column + 1;
     const code = "";
 
@@ -42,10 +42,10 @@ export default function Editor() {
       <div className={styles.slideEditorWrapper}>
         <MdxEditor />
         <MdxSlide />
-        <button className={styles.rightBtn} onClick={handleAddMainChapter}>
+        <button className={styles.rightBtn} onClick={handleAddRowChapter}>
           +
         </button>
-        <button className={styles.bottomBtn} onClick={handleAddSubChapter}>
+        <button className={styles.bottomBtn} onClick={handleAddColumnChapter}>
           +
         </button>
       </div>

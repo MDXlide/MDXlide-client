@@ -28,6 +28,14 @@ const initialState = {
       position: [2, 2],
       userCode: "# 세번째의 하위 2번 입니다",
     },
+    {
+      position: [3, 0],
+      userCode: "# 네번째 슬라이드 입니다",
+    },
+    {
+      position: [4, 0],
+      userCode: "# 다섯번째 슬라이드 입니다",
+    },
   ],
 };
 
