@@ -1,12 +1,11 @@
 /* header */
 
 .header {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 4rem;
+  height: 4.5rem;
 
   background-color: var(--main-black);
 }
@@ -18,6 +17,19 @@
 .logout {
   position: absolute;
   right: 2rem;
+
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--main-white);
+  background-color: inherit;
+  border: none;
+
+  transition: color 0.4s;
+}
+
+.logout:hover {
+  color: var(--main-blue);
+  cursor: pointer;
 }
 
 /* main */
@@ -29,9 +41,9 @@
 .leftBox {
   width: 20vw;
   min-width: 280px;
-  height: 90vh;
-  margin: 1rem 0;
-  padding: 2rem;
+  height: 85vh;
+  margin: 2rem 0;
+  padding: 0 2rem;
 
   border-right: 1px solid var(--main-grey);
 }
@@ -42,8 +54,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem 2rem;
   width: 80vw;
-  margin: 1rem 0;
-  padding: 2rem;
+  margin: 2rem 0;
+  padding: 0 2rem;
 }
 
 /* profile */
@@ -54,15 +66,16 @@
 }
 
 .profileImg {
-  width: 6rem;
+  width: 4.5rem;
 }
 
 .name {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
 }
 
 /* nav */
+
 .nav {
   display: flex;
   justify-content: space-around;
@@ -76,15 +89,17 @@
   text-align: start;
 
   color: var(--main-white);
-  font-size: 18px;
+  font-size: 1.1rem;
   background-color: var(--main-black);
   box-shadow: 0 0 5px 1px var(--main-shadow);
   border: none;
+  border-radius: 5px 5px;
 
-  transition: background-color 0.5s;
+  transition: all 0.5s;
 }
 
 .newSlideBtn:hover {
+  box-shadow: 0 0 5px 5px var(--main-shadow);
   background-color: var(--main-blue);
   cursor: pointer;
 }

@@ -20,7 +20,7 @@ export default function index({ posts, session }) {
       <header className={styles.header}>
         <img className={styles.logo} src={LOGO_IMG_PATH} alt={LOGO_ALT} />
         <button className={styles.logout} onClick={handleSignout}>
-          LOGUOT
+          SIGNOUT
         </button>
       </header>
       <main className={styles.main}>

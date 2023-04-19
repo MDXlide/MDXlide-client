@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 
 import { LOGO_IMG_PATH, LOGO_ALT } from "../constants/img";
 
-export default function signin() {
+export default function signin({ session }) {
   return (
     <div className={styles.wrapper}>
       <section className={styles.leftBox}>

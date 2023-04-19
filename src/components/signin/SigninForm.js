@@ -6,15 +6,16 @@ import { useRouter } from "next/router";
 import {
   GOOGLE_SIGNIN_MESSAGE,
   GUEST_SIGNIN_MESSAGE,
-} from "../../constants/message";
-import { GOOGLE_LOGO_IMG_PATH, GOOGLE_LOGO_ALT } from "../../constants/img";
+} from "@/constants/message";
+import { GOOGLE_LOGO_IMG_PATH, GOOGLE_LOGO_ALT } from "@/constants/img";
+import { CALLBACK_URL } from "@/constants/url";
 
 export default function SigninForm() {
   const [signinMessage, setSigninMessage] = useState("");
   const router = useRouter();
 
   async function handleGoogleSignin() {
-    signIn("google", { callbackUrl: "http://localhost:3000" });
+    const result = signIn("google", { callbackUrl: CALLBACK_URL });
   }
 
   function handleGuestSignin() {
