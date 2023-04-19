@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/pages/signin.module.css";
+import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "axios";
 
-const LOGO_IMG_PATH = "/logo.png";
-const LOGO_ALT = "MDXSlide logo";
-const GOOGLE_LOGO_IMG_PATH = "/google.png";
-const GOOGLE_LOGO_ALT = "google logo";
-
-const GOOGLE_SIGNIN_MESSAGE = "📌 구글 이메일로 로그인하려고 해요.";
-const GUEST_SIGNIN_MESSAGE =
-  "📌 로그인하지 않아도 이용이 가능해요!\n대신 슬라이드를 저장하기 위해선\n구글 로그인이 필요해요.";
+import {
+  GOOGLE_SIGNIN_MESSAGE,
+  GUEST_SIGNIN_MESSAGE,
+} from "../constants/message";
+import {
+  LOGO_IMG_PATH,
+  LOGO_ALT,
+  GOOGLE_LOGO_IMG_PATH,
+  GOOGLE_LOGO_ALT,
+} from "../constants/img";
 
 export default function signin() {
   const [signinMessage, setSigninMessage] = useState("");
+  const { session } = useSession();
+
+  async function handleGoogleSignin() {
+    signIn("google", { callbackUrl: "http://localhost:3000" });
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -25,6 +34,7 @@ export default function signin() {
             className={styles.googleBtn}
             type="button"
             onMouseOver={() => setSigninMessage(GOOGLE_SIGNIN_MESSAGE)}
+            onClick={handleGoogleSignin}
           >
             <img
               className={styles.googleLogo}

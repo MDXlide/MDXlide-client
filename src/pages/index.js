@@ -1,5 +1,6 @@
 import styles from "@/styles/pages/main.module.css";
 import SlideItem from "@/components/SlideItem";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const LOGO_IMG_PATH = "/logo.png";
 const LOGO_ALT = "MDXSlide logo";
@@ -7,6 +8,9 @@ const PROFILE_IMG_ALT = "user profile";
 
 export default function main({ user, posts }) {
   const { name, profileImg } = user;
+  const { data: session } = useSession();
+
+  console.log(session);
 
   return (
     <>

@@ -6,7 +6,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 50vw;
   min-width: 420px;
   height: 100vh;
@@ -28,12 +27,12 @@
 
 .signin {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 20vw;
-  height: 70vh;
+  height: 75vh;
   min-width: 25rem;
 
   background-color: var(--main-white);
@@ -68,9 +67,8 @@
 
 .message {
   position: absolute;
-  top: 60%;
+  top: 76%;
   width: 20rem;
-  margin-top: 5rem;
   padding: 2rem 0;
   text-align: center;
 
@@ -92,13 +90,13 @@
 
 .signin .googleBtn:hover ~ .message {
   visibility: visible;
-  top: 58%;
+  top: 72%;
 }
 
 .signin .guestBtn:hover ~ .message {
   visibility: visible;
   background-color: var(--main-black);
-  top: 58%;
+  top: 72%;
 }
 
 .signin .guestBtn:hover {
