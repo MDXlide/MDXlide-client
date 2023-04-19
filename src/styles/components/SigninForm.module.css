@@ -1,0 +1,86 @@
+.signin {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 75vh;
+  min-width: 25rem;
+
+  background-color: var(--main-white);
+  box-shadow: 0 0 10px 5px var(--main-shadow);
+
+  transition: box-shadow 0.8s;
+}
+
+.signin:hover {
+  box-shadow: 0 0 20px 20px var(--main-shadow);
+}
+
+.signin h1 {
+  font-size: 42px;
+  margin-bottom: 3rem;
+}
+
+.signin button {
+  width: 20rem;
+  padding: 0.6rem 0;
+  margin-top: 1rem;
+
+  background-color: inherit;
+  border: none;
+  border-radius: 10px 10px;
+  box-shadow: 1px 1px 1px 2px var(--main-black-shadow);
+  font-size: 16px;
+  vertical-align: middle;
+
+  transition: all 0.4s;
+}
+
+.message {
+  position: absolute;
+  top: 76%;
+  width: 20rem;
+  padding: 2rem 0;
+  text-align: center;
+
+  visibility: hidden;
+  transition-property: all;
+  transition-duration: 0.3s;
+
+  color: var(--main-white);
+  background-color: var(--main-blue);
+  border-radius: 5px 5px;
+  white-space: pre;
+}
+
+.signin button:hover {
+  color: var(--main-white);
+  background-color: var(--main-blue);
+  cursor: pointer;
+}
+
+.signin .googleBtn:hover ~ .message {
+  visibility: visible;
+  top: 72%;
+}
+
+.signin .guestBtn:hover ~ .message {
+  visibility: visible;
+  background-color: var(--main-black);
+  top: 72%;
+}
+
+.signin .guestBtn:hover {
+  color: var(--main-white);
+  background-color: var(--main-black);
+  cursor: pointer;
+}
+
+.googleLogo {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  height: 1.2rem;
+}

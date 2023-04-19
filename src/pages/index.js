@@ -6,7 +6,7 @@ const LOGO_IMG_PATH = "/logo.png";
 const LOGO_ALT = "MDXSlide logo";
 const PROFILE_IMG_ALT = "user profile";
 
-export default function main({ user, posts }) {
+export default function index({ user, posts }) {
   const { name, profileImg } = user;
   const { data: session } = useSession();
 
