@@ -3,3 +3,5 @@ export const LOGO_ALT = "MDXSlide logo";
 
 export const GOOGLE_LOGO_IMG_PATH = "/google.png";
 export const GOOGLE_LOGO_ALT = "google logo";
+
+export const PROFILE_IMG_ALT = "user profile";

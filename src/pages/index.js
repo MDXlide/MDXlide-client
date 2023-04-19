@@ -1,22 +1,27 @@
-import styles from "@/styles/pages/main.module.css";
+import styles from "@/styles/pages/index.module.css";
 import SlideItem from "@/components/SlideItem";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signOut, getSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { v4 as uuidv4 } from "uuid";
 
-const LOGO_IMG_PATH = "/logo.png";
-const LOGO_ALT = "MDXSlide logo";
-const PROFILE_IMG_ALT = "user profile";
+import { LOGO_IMG_PATH, LOGO_ALT, PROFILE_IMG_ALT } from "../constants/img";
 
-export default function index({ user, posts }) {
-  const { name, profileImg } = user;
-  const { data: session } = useSession();
+export default function index({ posts, session }) {
+  const { name, image } = session.user;
+  const router = useRouter();
 
-  console.log(session);
+  function handleSignout() {
+    signOut();
+    router.push("/signin");
+  }
 
   return (
     <>
       <header className={styles.header}>
         <img className={styles.logo} src={LOGO_IMG_PATH} alt={LOGO_ALT} />
-        <button className={styles.logout}>LOGUOT</button>
+        <button className={styles.logout} onClick={handleSignout}>
+          LOGUOT
+        </button>
       </header>
       <main className={styles.main}>
         <section className={styles.leftBox}>
@@ -24,7 +29,7 @@ export default function index({ user, posts }) {
             <span className={styles.name}>{name}</span>
             <img
               className={styles.profileImg}
-              src={profileImg}
+              src={image}
               alt={PROFILE_IMG_ALT}
             />
           </div>
@@ -34,7 +39,7 @@ export default function index({ user, posts }) {
         </section>
         <section className={styles.rightBox}>
           {posts.map((slide) => (
-            <SlideItem slide={slide} />
+            <SlideItem slide={slide} key={uuidv4()} />
           ))}
         </section>
       </main>
@@ -42,13 +47,19 @@ export default function index({ user, posts }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (!session)
+    return { redirect: { destination: "/signin", permanent: false } };
+
   const user = {
     userId: 1234,
     name: "choi yealin",
     email: "lin01.dev@gmail.com",
     profileImg: "/profile.png",
   };
+
   const posts = [
     {
       userId: 1234,
@@ -101,6 +112,7 @@ export async function getStaticProps() {
     props: {
       user,
       posts,
+      session,
     },
   };
 }
