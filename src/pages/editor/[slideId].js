@@ -4,14 +4,14 @@ import Nav from "@/components/Nav.js";
 import MdxEditor from "@/components/MdxEditor";
 import MdxSlide from "@/components/MdxSlide";
 
-import { addRowChapter, addcolumnChapter } from "../features/slideSlice";
+import { addRowChapter, addcolumnChapter } from "../../features/slideSlice";
 import { setRow, setColumn } from "@/features/postionSlice";
 import {
   isRowAnimation,
   isColumnAnimation,
 } from "@/features/slideAnimationSlice";
 
-export default function Editor() {
+export default function editor() {
   const dispatch = useDispatch();
   const { row, column } = useSelector((state) => state.position);
 
