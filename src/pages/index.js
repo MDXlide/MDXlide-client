@@ -1,12 +1,18 @@
 import styles from "@/styles/pages/index.module.css";
-import SlideItem from "@/components/SlideItem";
 import { signOut, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
 
+import SlideItem from "@/components/SlideItem";
+import ModalLayout from "@/components/modal/ModalLayout";
+import { openModal } from "@/features/modalSlice";
 import { LOGO_IMG_PATH, LOGO_ALT, PROFILE_IMG_ALT } from "../constants/img";
 
+const SLIDE_NAME_MODAL_MESSAGE = "새로 만들 슬라이드의 이름을 정해주세요.";
+
 export default function index({ posts, session }) {
+  const dispatch = useDispatch();
   const { name, image } = session.user;
   const router = useRouter();
 
@@ -15,8 +21,13 @@ export default function index({ posts, session }) {
     router.push("/signin");
   }
 
+  function handleNewSlide() {
+    dispatch(openModal(true));
+  }
+
   return (
     <>
+      <ModalLayout title={SLIDE_NAME_MODAL_MESSAGE} type="input" />
       <header className={styles.header}>
         <img className={styles.logo} src={LOGO_IMG_PATH} alt={LOGO_ALT} />
         <button className={styles.logout} onClick={handleSignout}>
@@ -34,7 +45,9 @@ export default function index({ posts, session }) {
             />
           </div>
           <nav className={styles.nav}>
-            <button className={styles.newSlideBtn}>new slide</button>
+            <button className={styles.newSlideBtn} onClick={handleNewSlide}>
+              new slide
+            </button>
           </nav>
         </section>
         <section className={styles.rightBox}>

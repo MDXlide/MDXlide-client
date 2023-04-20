@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 15%;
+}
+
+.input {
+  height: 100%;
+  width: 60%;
+  font-size: 1rem;
+  text-align: center;
+
+  border: none;
+  border-radius: 5px 5px;
+  box-shadow: 0 0 2px 2px var(--main-black-shadow);
+}
+
+.input:active {
+  outline: 1px var(--main-blue);
+}
+
+.button {
+  height: 100%;
+  width: 20%;
+  margin-left: 1rem;
+
+  background-color: var(--main-black);
+  color: var(--main-white);
+  border: none;
+  border-radius: 5px 5px;
+
+  transition: background-color 0.4s;
+}
+
+.button:hover {
+  background-color: var(--main-blue);
+}

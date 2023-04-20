@@ -1,0 +1,33 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 40%;
+  min-width: 400px;
+  height: 40%;
+
+  background-color: var(--main-white);
+  border-radius: 5px 5px;
+}
+
+.title {
+  padding: 2rem;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  background-color: inherit;
+  border: none;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+}
