@@ -5,24 +5,24 @@ import { useRouter } from "next/router";
 import styles from "@/styles/components/ModalSlideTitle.module.css";
 import axios from "axios";
 
-const defaultUrl = "http://localhost:8000/";
+import { DEFAULT_SERVER_URL } from "@/constants/url";
 
 export default function ModalSlideTitle({ button }) {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const { data } = useSession();
 
-  async function createNewSlide() {
+  async function createSlide() {
     const userName = data.user.name;
     const slideId = uuidv4();
-    const owner = data.id;
+    const userId = data.id;
     const chapters = { position: [0, 0], userCode: "# title" };
     const lastSaveTime = new Date().toISOString().slice(0, 10);
     const axiosOption = {
       method: "post",
-      url: defaultUrl + `api/user/${userName}/slides/${slideId}`,
+      url: DEFAULT_SERVER_URL + `api/users/${userName}/slides/${slideId}`,
       data: {
-        owner,
+        userId,
         slideId,
         title,
         chapters,
@@ -50,7 +50,7 @@ export default function ModalSlideTitle({ button }) {
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
-      <button className={styles.button} onClick={createNewSlide}>
+      <button className={styles.button} onClick={createSlide}>
         {button}
       </button>
     </div>

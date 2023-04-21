@@ -2,41 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
+  userId: 0,
+  slideId: "",
+  title: "",
   chapters: [
     {
       position: [0, 0],
       userCode:
         "<div style={{padding: '1rem', backgroundColor: 'violet'}}>박스 예시입니다.</div>",
     },
-    {
-      position: [1, 0],
-      userCode: "# 두번째 슬라이드입니다",
-    },
-    {
-      position: [0, 1],
-      userCode: "# column 두 번째",
-    },
-    {
-      position: [2, 0],
-      userCode: "# 세번째 슬라이드입니다",
-    },
-    {
-      position: [2, 1],
-      userCode: "# 세번째의 하위 1번 입니다",
-    },
-    {
-      position: [2, 2],
-      userCode: "# 세번째의 하위 2번 입니다",
-    },
-    {
-      position: [3, 0],
-      userCode: "# 네번째 슬라이드 입니다",
-    },
-    {
-      position: [4, 0],
-      userCode: "# 다섯번째 슬라이드 입니다",
-    },
   ],
+  lastSaveTime: "",
 };
 
 export const slideSlice = createSlice({
@@ -68,6 +44,16 @@ export const slideSlice = createSlice({
         userCode: code,
       });
     },
+    setSlide: (state, action) => {
+      const { userId, slideId, title, chapters, lastSaveTime } =
+        action.payload.slide;
+
+      state.userId = userId;
+      state.slideId = slideId;
+      state.title = title;
+      state.chapters = chapters;
+      state.lastSaveTime = lastSaveTime;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -79,7 +65,7 @@ export const slideSlice = createSlice({
   },
 });
 
-export const { setChapterText, addRowChapter, addcolumnChapter } =
+export const { setChapterText, addRowChapter, addcolumnChapter, setSlide } =
   slideSlice.actions;
 
 export default slideSlice.reducer;

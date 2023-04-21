@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "@/styles/Play.module.css";
 
-import MdxSlide from "@/components/MdxSlide";
+import MdxSlide from "@/components/editor/MdxSlide";
 import PositionNavBtn from "@/components/PositionNavBtn";
 import ProgressBar from "@/components/ProgressBar";
 

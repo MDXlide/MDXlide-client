@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 
-import SlideItem from "@/components/SlideItem";
+import SlideItem from "@/components/index/SlideItem";
 import ModalLayout from "@/components/modal/ModalLayout";
 import { openModal } from "@/features/modalSlice";
 import { LOGO_IMG_PATH, LOGO_ALT, PROFILE_IMG_ALT } from "../constants/img";
