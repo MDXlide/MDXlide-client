@@ -75,15 +75,15 @@ export async function getServerSideProps(context) {
 
   try {
     const session = await getSession(context);
+    if (!session)
+      return { redirect: { destination: "/signin", permanent: false } };
+
     userName = session.user.name;
   } catch (err) {
     return {
       notFound: true,
     };
   }
-
-  if (!userName)
-    return { redirect: { destination: "/signin", permanent: false } };
 
   try {
     const targetSlide = await axios.get(

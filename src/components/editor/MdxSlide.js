@@ -18,6 +18,9 @@ export default function MdxSlide({ layout, playPosition }) {
     ? playPosition
     : defaultPlayPosition;
   const [mdxResult, setMdxResult] = useState(null);
+  const targetChapter = chapters.filter((chapter) =>
+    checkTargetChapter(chapter.position[0], chapter.position[1]),
+  );
 
   function checkTargetChapter(chapterRow, chapterColoumn) {
     if (layout === "play") {
@@ -34,10 +37,6 @@ export default function MdxSlide({ layout, playPosition }) {
       }
     }
   }
-
-  const targetChapter = chapters.filter((chapter) =>
-    checkTargetChapter(chapter.position[0], chapter.position[1]),
-  );
 
   useEffect(() => {
     async function useMdx() {

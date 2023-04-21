@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styles from "@/styles/components/SlideItem.module.css";
 
 import { VFile } from "vfile";
@@ -6,7 +7,8 @@ import * as runtime from "react/jsx-runtime";
 import { evaluate } from "@mdx-js/mdx";
 
 export default function SlideItem({ slide }) {
-  const { title, chapters, lastSaveTime } = slide;
+  const router = useRouter();
+  const { title, chapters, lastSaveTime, slideId } = slide;
   const firstChapter = chapters.filter(
     (chapter) => chapter.position[0] === 0 && chapter.position[1] === 0,
   )[0];
@@ -39,9 +41,15 @@ export default function SlideItem({ slide }) {
     parseMdx();
   }, []);
 
+  function handleMoveSlideEdiorPage() {
+    router.push(`/editor/${slideId}`);
+  }
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.mdx}>{mdxResult}</div>
+      <div className={styles.mdx} onClick={handleMoveSlideEdiorPage}>
+        {mdxResult}
+      </div>
       <div className={styles.describe}>
         <div className={styles.describeWrapper}>
           <h3>{title}</h3>
