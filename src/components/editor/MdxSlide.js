@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "@/styles/MdxSlide.module.css";
-
 import { VFile } from "vfile";
 import * as runtime from "react/jsx-runtime";
 import { evaluate } from "@mdx-js/mdx";

@@ -15,7 +15,7 @@ export default function Nav() {
     <nav className={navStyles.nav}>
       <ul>
         <li>
-          <Link href="/main">HOME</Link>
+          <Link href="/">MYPAGE</Link>
         </li>
         <li>
           <Link href="/play" onClick={handleFullScreen}>

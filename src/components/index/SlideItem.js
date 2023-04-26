@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios, { all } from "axios";
 import styles from "@/styles/components/SlideItem.module.css";
 
 import { VFile } from "vfile";
 import * as runtime from "react/jsx-runtime";
 import { evaluate } from "@mdx-js/mdx";
 
-export default function SlideItem({ slide }) {
+import { DEFAULT_SERVER_URL } from "@/constants/url";
+
+export default function SlideItem({ slide, allSlides, setAllSlides }) {
   const router = useRouter();
-  const { title, chapters, lastSaveTime, slideId } = slide;
+  const { title, chapters, lastSaveTime, slideId, userId } = slide;
   const firstChapter = chapters.filter(
     (chapter) => chapter.position[0] === 0 && chapter.position[1] === 0,
   )[0];
@@ -45,6 +48,22 @@ export default function SlideItem({ slide }) {
     router.push(`/editor/${slideId}`);
   }
 
+  async function handleDeleteSlide() {
+    const newAllslide = allSlides.filter(
+      (item) => item.slideId !== slide.slideId,
+    );
+
+    setAllSlides(newAllslide);
+
+    try {
+      const result =
+        await axios.delete(`${DEFAULT_SERVER_URL}api/users/${userId}/slides/${slideId}
+    `);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.mdx} onClick={handleMoveSlideEdiorPage}>
@@ -53,7 +72,7 @@ export default function SlideItem({ slide }) {
       <div className={styles.describe}>
         <div className={styles.describeWrapper}>
           <h3>{title}</h3>
-          <button className={styles.deleteBtn}>
+          <button className={styles.deleteBtn} onClick={handleDeleteSlide}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="12"

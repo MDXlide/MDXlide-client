@@ -4,17 +4,19 @@ import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-
 import SlideItem from "@/components/index/SlideItem";
 import ModalLayout from "@/components/modal/ModalLayout";
 import { openModal } from "@/features/modalSlice";
-
+import { setRow, setColumn } from "@/features/postionSlice";
 import { LOGO_IMG_PATH, LOGO_ALT, PROFILE_IMG_ALT } from "../constants/img";
 import { DEFAULT_SERVER_URL } from "@/constants/url";
+import { useState } from "react";
+
 const SLIDE_NAME_MODAL_MESSAGE = "새로 만들 슬라이드의 이름을 정해주세요.";
 
 export default function index({ slides, session }) {
   const dispatch = useDispatch();
+  const [allSlides, setAllSlides] = useState(slides);
   const { name, image } = session.user;
   const router = useRouter();
 
@@ -27,6 +29,10 @@ export default function index({ slides, session }) {
     dispatch(openModal(true));
   }
 
+  function handleResetSlidePosition() {
+    dispatch(setRow(0));
+    dispatch(setColumn(0));
+  }
   return (
     <>
       <ModalLayout title={SLIDE_NAME_MODAL_MESSAGE} type="input" />
@@ -53,8 +59,14 @@ export default function index({ slides, session }) {
           </nav>
         </section>
         <section className={styles.rightBox}>
-          {slides.map((slide) => (
-            <SlideItem slide={slide} key={uuidv4()} />
+          {allSlides.map((slide) => (
+            <SlideItem
+              onClick={handleResetSlidePosition}
+              slide={slide}
+              allSlides={allSlides}
+              setAllSlides={setAllSlides}
+              key={uuidv4()}
+            />
           ))}
         </section>
       </main>

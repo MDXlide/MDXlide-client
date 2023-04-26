@@ -29,6 +29,10 @@
   padding: 1rem;
 }
 
+.describe h3:hover {
+  cursor: text;
+}
+
 .describe .deleteBtn {
   width: 3rem;
   height: 2rem;
