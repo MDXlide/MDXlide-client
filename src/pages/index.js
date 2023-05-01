@@ -7,7 +7,6 @@ import axios from "axios";
 import SlideItem from "@/components/index/SlideItem";
 import ModalLayout from "@/components/modal/ModalLayout";
 import { openModal } from "@/features/modalSlice";
-import { setRow, setColumn } from "@/features/postionSlice";
 import { LOGO_IMG_PATH, LOGO_ALT, PROFILE_IMG_ALT } from "../constants/img";
 import { DEFAULT_SERVER_URL } from "@/constants/url";
 import { useState } from "react";
@@ -29,10 +28,6 @@ export default function index({ slides, session }) {
     dispatch(openModal(true));
   }
 
-  function handleResetSlidePosition() {
-    dispatch(setRow(0));
-    dispatch(setColumn(0));
-  }
   return (
     <>
       <ModalLayout title={SLIDE_NAME_MODAL_MESSAGE} type="input" />
@@ -61,7 +56,6 @@ export default function index({ slides, session }) {
         <section className={styles.rightBox}>
           {allSlides.map((slide) => (
             <SlideItem
-              onClick={handleResetSlidePosition}
               slide={slide}
               allSlides={allSlides}
               setAllSlides={setAllSlides}
@@ -104,6 +98,7 @@ export async function getServerSideProps(context) {
       },
     };
   } catch (err) {
+    console.log(err);
     return {
       notFound: true,
     };

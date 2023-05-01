@@ -32,3 +32,14 @@
   right: 30%;
   bottom: -20%;
 }
+
+.deleteChapterBtn {
+  position: absolute;
+  top: -3rem;
+  right: 5%;
+}
+
+.deleteChapterBtn:hover {
+  fill: red;
+  cursor: pointer;
+}

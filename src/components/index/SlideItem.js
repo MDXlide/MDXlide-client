@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios, { all } from "axios";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 import styles from "@/styles/components/SlideItem.module.css";
-
 import { VFile } from "vfile";
 import * as runtime from "react/jsx-runtime";
 import { evaluate } from "@mdx-js/mdx";
-
+import { setRow, setColumn } from "@/features/postionSlice";
 import { DEFAULT_SERVER_URL } from "@/constants/url";
 
 export default function SlideItem({ slide, allSlides, setAllSlides }) {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { title, chapters, lastSaveTime, slideId, userId } = slide;
   const firstChapter = chapters.filter(
     (chapter) => chapter.position[0] === 0 && chapter.position[1] === 0,
@@ -46,6 +47,8 @@ export default function SlideItem({ slide, allSlides, setAllSlides }) {
 
   function handleMoveSlideEdiorPage() {
     router.push(`/editor/${slideId}`);
+    dispatch(setRow(0));
+    dispatch(setColumn(0));
   }
 
   async function handleDeleteSlide() {

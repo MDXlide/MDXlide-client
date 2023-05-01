@@ -36,7 +36,7 @@ export const slideSlice = createSlice({
         userCode: code,
       });
     },
-    addcolumnChapter: (state, action) => {
+    addColumnChapter: (state, action) => {
       const { code, row, newColumn } = action.payload;
 
       state.chapters.push({
@@ -54,6 +54,29 @@ export const slideSlice = createSlice({
       state.chapters = chapters;
       state.lastSaveTime = lastSaveTime;
     },
+    insertRowChapter: (state, action) => {
+      const { code, newRow, column } = action.payload;
+
+      state.chapters.forEach((chapter) => {
+        if (chapter.position[0] >= newRow) chapter.position[0] += 1;
+      });
+      state.chapters.push({
+        position: [newRow, column],
+        userCode: code,
+      });
+    },
+    deleteRowChapter: (state, action) => {
+      const { row, column } = action.payload;
+
+      const noNowRowChapters = state.chapters.filter(
+        (chapter) => chapter.position[0] !== row,
+      );
+      noNowRowChapters.forEach((chapter) => {
+        if (chapter.position[0] > row) chapter.position[0] -= 1;
+      });
+
+      state.chapters = noNowRowChapters;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -65,7 +88,13 @@ export const slideSlice = createSlice({
   },
 });
 
-export const { setChapterText, addRowChapter, addcolumnChapter, setSlide } =
-  slideSlice.actions;
+export const {
+  setChapterText,
+  addRowChapter,
+  addColumnChapter,
+  setSlide,
+  insertRowChapter,
+  deleteRowChapter,
+} = slideSlice.actions;
 
 export default slideSlice.reducer;

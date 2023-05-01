@@ -29,7 +29,7 @@ export default function MdxEditor() {
     const lastSaveTime = new Date().toISOString().slice(0, 10);
 
     try {
-      const result = await axios.patch(
+      await axios.patch(
         `${DEFAULT_SERVER_URL}api/users/${userId}/slides/${slideId}`,
         { targetChapter, lastSaveTime },
       );
