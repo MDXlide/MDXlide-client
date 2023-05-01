@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -28,10 +28,15 @@ export default function editor({ slide }) {
   const data = useSession();
   const { row, column, version } = useSelector((state) => state.position);
   const { chapters } = useSelector((state) => state.slide);
+  const [hiddenRowBtn, setHiddenRowBtn] = useState(false);
 
   useEffect(() => {
     dispatch(setSlide(slide));
   }, [slide]);
+
+  useEffect(() => {
+    if (column > 0) setHiddenRowBtn(true);
+  }, [version]);
 
   useEffect(() => {
     async function saveNewChapter() {
@@ -125,7 +130,10 @@ export default function editor({ slide }) {
         <div className={styles.slideEditorWrapper}>
           <MdxEditor />
           <MdxSlide />
-          <button className={styles.rightBtn} onClick={handleAddRowChapter}>
+          <button
+            className={`${styles.rightBtn} ${hiddenRowBtn && styles.hidden}`}
+            onClick={handleAddRowChapter}
+          >
             +
           </button>
           <button className={styles.bottomBtn} onClick={handleAddColumnChapter}>

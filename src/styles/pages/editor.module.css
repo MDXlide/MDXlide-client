@@ -43,3 +43,7 @@
   fill: red;
   cursor: pointer;
 }
+
+.hidden {
+  display: none;
+}
