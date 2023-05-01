@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import styles from "@/styles/MdxEditor.module.css";
+import styles from "@/styles/components/MdxEditor.module.css";
 import { setChapterText } from "@/features/slideSlice";
 import useInterval from "@/hooks/useInterval";
 import { DEFAULT_SERVER_URL } from "@/constants/url";

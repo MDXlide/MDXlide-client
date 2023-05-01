@@ -65,17 +65,41 @@ export const slideSlice = createSlice({
         userCode: code,
       });
     },
-    deleteRowChapter: (state, action) => {
-      const { row, column } = action.payload;
+    insertColumnChapter: (state, action) => {
+      const { code, row, newColumn } = action.payload;
 
-      const noNowRowChapters = state.chapters.filter(
+      state.chapters.forEach((chapter) => {
+        if (chapter.position[1] >= newColumn && chapter.position[0] === row)
+          chapter.position[1] += 1;
+      });
+      state.chapters.push({
+        position: [row, newColumn],
+        userCode: code,
+      });
+    },
+    deleteRowChapter: (state, action) => {
+      const { row } = action.payload;
+      const deleteTargetChapter = state.chapters.filter(
         (chapter) => chapter.position[0] !== row,
       );
-      noNowRowChapters.forEach((chapter) => {
+
+      deleteTargetChapter.forEach((chapter) => {
         if (chapter.position[0] > row) chapter.position[0] -= 1;
       });
+      state.chapters = deleteTargetChapter;
+    },
+    deleteColumnChapter: (state, action) => {
+      const { row, column } = action.payload;
+      const deleteTargetChapter = state.chapters.filter(
+        (chapter) =>
+          chapter.position[0] !== row || chapter.position[1] !== column,
+      );
 
-      state.chapters = noNowRowChapters;
+      deleteTargetChapter.forEach((chapter) => {
+        if (chapter.position[0] === row && chapter.position[1] > column)
+          chapter.position[1] -= 1;
+      });
+      state.chapters = deleteTargetChapter;
     },
   },
   extraReducers: {
@@ -94,7 +118,9 @@ export const {
   addColumnChapter,
   setSlide,
   insertRowChapter,
+  insertColumnChapter,
   deleteRowChapter,
+  deleteColumnChapter,
 } = slideSlice.actions;
 
 export default slideSlice.reducer;

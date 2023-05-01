@@ -25,7 +25,6 @@ export const positionSlice = createSlice({
     },
     setVersion: (state, action) => {
       state.version += 1;
-      console.log(state.version);
     },
   },
   extraReducers: {
