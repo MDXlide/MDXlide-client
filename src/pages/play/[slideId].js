@@ -4,7 +4,7 @@ import styles from "@/styles/pages/play.module.css";
 import { v4 as uuidv4 } from "uuid";
 import getMdxParse from "@/utils/getMdxParse";
 import { getSession } from "next-auth/react";
-import axios from "axios";
+import axios, { all } from "axios";
 
 import PositionNavBtn from "@/components/PositionNavBtn";
 import ProgressBar from "@/components/ProgressBar";
@@ -18,24 +18,25 @@ export default function play({ slide }) {
   const [playColumn, setPlayColumn] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  // const maxRow = chapters.reduce((prev, chapters) => {
-  //   const nowRow = chapters.position[0];
+  const maxRow = allChapter.reduce((prev, chapters) => {
+    const nowRow = chapters.position[0];
 
-  //   return prev > nowRow ? prev : nowRow;
-  // });
-  // const maxColumn = chapters
-  //   .filter((chapters) => chapters.position[0] === maxRow)
-  //   .reduce((prev, chapters) => {
-  //     const nowColumn = chapters.position[1];
+    return prev > nowRow ? prev : nowRow;
+  });
+  const maxColumn = allChapter
+    .filter((chapters) => chapters.position[0] === maxRow)
+    .reduce((prev, chapters) => {
+      const nowColumn = chapters.position[1];
 
-  //     return prev > nowColumn ? prev : nowColumn;
-  //   });
+      return prev > nowColumn ? prev : nowColumn;
+    });
 
   async function fetchMdxResult() {
     const result = await Promise.all(
       allChapter.map(async (chapter) => {
         return await getMdxParse(chapter.userCode, {
           position: chapter.position,
+          id: uuidv4(),
         });
       }),
     );
@@ -53,7 +54,6 @@ export default function play({ slide }) {
     }
 
     const nowProgress = (100 / (maxRow + maxColumn)) * playRow;
-
     setProgress(nowProgress);
   }, [playRow]);
 
@@ -67,9 +67,9 @@ export default function play({ slide }) {
     let nowProgress;
 
     if (playRow === maxRow) {
-      nowProgress = (100 / chapters.length) * (playRow + playColumn + offset);
+      nowProgress = (100 / allChapter.length) * (playRow + playColumn + offset);
     } else {
-      nowProgress = (100 / chapters.length) * (playRow + playColumn);
+      nowProgress = (100 / allChapter.length) * (playRow + playColumn);
     }
 
     setProgress(nowProgress);
@@ -77,18 +77,19 @@ export default function play({ slide }) {
 
   return (
     <main className={styles.wrapper}>
-      {allMdx?.map((mdx) => (
+      {allMdx?.map((mdx, index) => (
         <PlaySlideItem
           chapter={mdx}
-          key={uuidv4()}
+          key={mdx.id}
           playPosition={{ playRow, playColumn }}
         />
       ))}
       <PositionNavBtn
         setPlayPosition={{ setPlayRow, setPlayColumn }}
         playPosition={{ playRow, playColumn }}
+        allChapter={allChapter}
       />
-      {/* <ProgressBar progress={progress} /> */}
+      <ProgressBar progress={progress} />
     </main>
   );
 }

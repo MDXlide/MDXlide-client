@@ -10,7 +10,6 @@ import getMdxParse from "@/utils/getMdxParse";
 export default function full() {
   const { chapters } = useSelector((state) => state.slide);
   const [allMdx, setAllMdx] = useState(null);
-  const id = uuidv4();
 
   async function fetchMdxResult() {
     const result = await Promise.all(
@@ -33,7 +32,7 @@ export default function full() {
       <div className={styles.wrapper}>
         <main className={styles.slideItemWrapper}>
           {allMdx?.map((mdx) => (
-            <FullSlideItem chapter={mdx} key={id} />
+            <FullSlideItem chapter={mdx} key={uuidv4()} />
           ))}
         </main>
       </div>

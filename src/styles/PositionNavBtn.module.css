@@ -1,5 +1,6 @@
 .positionNav button {
   position: absolute;
+  z-index: 2;
 
   background-color: inherit;
   border: none;
@@ -30,4 +31,8 @@
 .leftBtn {
   right: 6.2rem;
   bottom: 4rem;
+}
+
+.hidden {
+  display: none;
 }

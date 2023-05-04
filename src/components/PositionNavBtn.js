@@ -1,66 +1,75 @@
 import styles from "@/styles/PositionNavBtn.module.css";
-import { useDispatch } from "react-redux";
 
-import {
-  isRowNext,
-  isRowPrev,
-  isColumnNext,
-  isColumnPrev,
-} from "@/features/slideAnimationSlice";
-
-export default function PositionNavBtn({ setPlayPosition, playPosition }) {
-  const dispatch = useDispatch();
+export default function PositionNavBtn({
+  setPlayPosition,
+  playPosition,
+  allChapter,
+}) {
   const { playRow, playColumn } = playPosition;
   const { setPlayRow, setPlayColumn } = setPlayPosition;
+  const isPrevRow = allChapter.find(
+    (chapter) => chapter.position[0] === playRow - 1,
+  );
+  const isNextRow = allChapter.find(
+    (chapter) => chapter.position[0] === playRow + 1,
+  );
+  const isNextColunmn = allChapter.find(
+    (chapter) =>
+      chapter.position[1] === playColumn + 1 && chapter.position[0] === playRow,
+  );
 
   function handleTopBtn() {
     const newColumn = playColumn - 1;
-
-    dispatch(isColumnPrev(true));
-
-    setTimeout(() => setPlayColumn(newColumn), 500);
-    setTimeout(() => dispatch(isColumnPrev(false)), 1000);
+    setPlayColumn(newColumn);
   }
 
   function handleRightBtn() {
     const newRow = playRow + 1;
-
-    dispatch(isRowNext(true));
-
-    setTimeout(() => setPlayRow(newRow), 500);
-    setTimeout(() => dispatch(isRowNext(false)), 1000);
+    setPlayRow(newRow);
   }
 
   function handleButtomBtn() {
     const newColumn = playColumn + 1;
-
-    dispatch(isColumnNext(true));
-
-    setTimeout(() => setPlayColumn(newColumn), 500);
-    setTimeout(() => dispatch(isColumnNext(false)), 1000);
+    setPlayColumn(newColumn);
   }
 
   function handleLeftBtn() {
     const newRow = playRow - 1;
-
-    dispatch(isRowPrev(true));
-
-    setTimeout(() => setPlayRow(newRow), 500);
-    setTimeout(() => dispatch(isRowPrev(false)), 1000);
+    setPlayRow(newRow);
   }
 
   return (
     <nav className={styles.positionNav}>
-      <button className={styles.topBtn} onClick={handleTopBtn}>
+      <button
+        className={playColumn < 1 ? `${styles.hidden}` : `${styles.topBtn}`}
+        onClick={handleTopBtn}
+      >
         ▲
       </button>
-      <button className={styles.rightBtn} onClick={handleRightBtn}>
+      <button
+        className={
+          playColumn > 0 || !isNextRow
+            ? `${styles.hidden}`
+            : `${styles.rightBtn}`
+        }
+        onClick={handleRightBtn}
+      >
         ▶
       </button>
-      <button className={styles.buttomBtn} onClick={handleButtomBtn}>
+      <button
+        className={!isNextColunmn ? `${styles.hidden}` : `${styles.buttomBtn}`}
+        onClick={handleButtomBtn}
+      >
         ▼
       </button>
-      <button className={styles.leftBtn} onClick={handleLeftBtn}>
+      <button
+        className={
+          playColumn > 0 || !isPrevRow
+            ? `${styles.hidden}`
+            : `${styles.leftBtn}`
+        }
+        onClick={handleLeftBtn}
+      >
         ◀
       </button>
     </nav>

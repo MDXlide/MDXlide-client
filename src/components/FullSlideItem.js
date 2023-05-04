@@ -1,4 +1,4 @@
-import stlyes from "@/styles/components/FullSlideItem.module.css";
+import styles from "@/styles/components/FullSlideItem.module.css";
 
 export default function FullSlideItem({ chapter }) {
   const { mdxResult, position } = chapter;
@@ -6,9 +6,8 @@ export default function FullSlideItem({ chapter }) {
     gridColumn: position[0] + 1,
     gridRow: position[1] + 1,
   };
-
   return (
-    <div className={stlyes.slide} style={slideStyle}>
+    <div className={styles.slide} style={slideStyle}>
       {mdxResult}
     </div>
   );
