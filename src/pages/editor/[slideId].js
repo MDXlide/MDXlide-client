@@ -24,7 +24,6 @@ import {
   isRowPrev,
 } from "@/features/slideAnimationSlice";
 import { DEFAULT_SERVER_URL } from "@/constants/url";
-import PositionNavBtn from "@/components/PositionNavBtn";
 
 const DEFAULT_CHAPTER_USER_CODE = "## 새로운 챕터입니다.";
 

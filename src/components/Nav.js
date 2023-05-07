@@ -1,5 +1,5 @@
 import Link from "next/link";
-import navStyles from "@/styles/Nav.module.css";
+import styles from "@/styles/Nav.module.css";
 import { useRouter } from "next/router";
 
 export default function Nav() {
@@ -16,10 +16,18 @@ export default function Nav() {
   }
 
   return (
-    <nav className={navStyles.nav}>
+    <nav className={styles.nav}>
       <ul>
         <li>
           <Link href="/">MYPAGE</Link>
+        </li>
+        <li>
+          <Link
+            href={`/editor/${slideId}`}
+            className={router.pathname === "/editor/[slideId]" && styles.active}
+          >
+            EDITOR
+          </Link>
         </li>
         <li>
           <Link href={`/play/${slideId}`} onClick={handleFullScreen}>
@@ -27,7 +35,12 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Link href="/full">FULL</Link>
+          <Link
+            href={`/full${slideId}`}
+            className={router.pathname === "/full" && styles.active}
+          >
+            FULL
+          </Link>
         </li>
       </ul>
       <div className="logo"></div>
