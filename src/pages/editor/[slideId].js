@@ -17,8 +17,14 @@ import {
   deleteColumnChapter,
 } from "../../features/slideSlice";
 import { setRow, setColumn, setVersion } from "@/features/postionSlice";
-import { isRowNext, isColumnNext } from "@/features/slideAnimationSlice";
+import {
+  isRowNext,
+  isColumnNext,
+  isColumnPrev,
+  isRowPrev,
+} from "@/features/slideAnimationSlice";
 import { DEFAULT_SERVER_URL } from "@/constants/url";
+import PositionNavBtn from "@/components/PositionNavBtn";
 
 const DEFAULT_CHAPTER_USER_CODE = "## 새로운 챕터입니다.";
 
@@ -123,6 +129,46 @@ export default function editor({ slide }) {
       setTimeout(() => dispatch(isRowNext(false)), 1000);
     }
   }
+
+  const prevRow = chapters.find((chapter) => chapter.position[0] === row - 1);
+  const nextRow = chapters.find((chapter) => chapter.position[0] === row + 1);
+  const nextColumn = chapters.find(
+    (chapter) =>
+      chapter.position[1] === column + 1 && chapter.position[0] === row,
+  );
+
+  function handlePrevColumn() {
+    const prevColumn = column - 1;
+
+    dispatch(isColumnPrev(true));
+    dispatch(setColumn(prevColumn));
+    setTimeout(() => dispatch(isColumnPrev(false)), 1000);
+  }
+
+  function handleNextRow() {
+    const nextRow = row + 1;
+
+    dispatch(isRowNext(true));
+    dispatch(setRow(nextRow));
+    setTimeout(() => dispatch(isRowNext(false)), 1000);
+  }
+
+  function handleNextColumn() {
+    const nextColumn = column + 1;
+
+    dispatch(isColumnNext(true));
+    dispatch(setColumn(nextColumn));
+    setTimeout(() => dispatch(isColumnNext(false)), 1000);
+  }
+
+  function handlePrevRow() {
+    const prevRow = row - 1;
+
+    dispatch(isRowPrev(true));
+    dispatch(setRow(prevRow));
+    setTimeout(() => dispatch(isRowPrev(false)), 1000);
+  }
+
   return (
     <>
       <Nav />
@@ -131,12 +177,12 @@ export default function editor({ slide }) {
           <MdxEditor />
           <MdxSlide />
           <button
-            className={`${styles.rightBtn} ${hiddenRowBtn && styles.hidden}`}
+            className={`${styles.addRow} ${hiddenRowBtn && styles.hidden}`}
             onClick={handleAddRowChapter}
           >
             +
           </button>
-          <button className={styles.bottomBtn} onClick={handleAddColumnChapter}>
+          <button className={styles.addColumn} onClick={handleAddColumnChapter}>
             +
           </button>
           <button
@@ -151,6 +197,30 @@ export default function editor({ slide }) {
             >
               <path d="M220 236v186-186 680-11.5V916 236Zm0 740q-24 0-42-18t-18-42V236q0-24 18-42t42-18h361l219 219v227q-14-6-29-9.5t-31-5.5V422H551V236H220v680h316q10 17 22 32t27 28H220Zm416-34-42-42 84-84-84-84 42-42 84 84 84-84 42 42-83 84 83 84-42 42-84-83-84 83Z" />
             </svg>
+          </button>
+          <button
+            className={column < 1 ? styles.hidden : styles.topBtn}
+            onClick={handlePrevColumn}
+          >
+            ▲
+          </button>
+          <button
+            className={column > 0 || !nextRow ? styles.hidden : styles.rightBtn}
+            onClick={handleNextRow}
+          >
+            ▶
+          </button>
+          <button
+            className={!nextColumn ? styles.hidden : styles.bottomBtn}
+            onClick={handleNextColumn}
+          >
+            ▼
+          </button>
+          <button
+            className={column > 0 || !prevRow ? styles.hidden : styles.leftBtn}
+            onClick={handlePrevRow}
+          >
+            ◀
           </button>
         </div>
       </main>

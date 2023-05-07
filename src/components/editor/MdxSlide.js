@@ -13,9 +13,6 @@ export default function MdxSlide({ layout, playPosition }) {
   const { rowNext, rowPrev, columnNext, columnPrev } = useSelector(
     (state) => state.slideAnimation,
   );
-  const { playRow, playColumn } = playPosition
-    ? playPosition
-    : defaultPlayPosition;
   const [mdxResult, setMdxResult] = useState(null);
   const targetChapter = chapters.filter((chapter) =>
     checkTargetChapter(chapter.position[0], chapter.position[1]),
@@ -62,15 +59,13 @@ export default function MdxSlide({ layout, playPosition }) {
     }
 
     useMdx();
-  }, [chapters, playPosition]);
+  }, [chapters, row, column]);
 
   return (
     <div
-      className={`${layout === "play" ? styles.playSlide : styles.slide} ${
-        rowNext && styles.rowNext
-      } ${columnNext && styles.columnNext} ${rowPrev && styles.rowPrev} ${
-        columnPrev && styles.columnPrev
-      }
+      className={`${styles.slide} ${rowNext && styles.rowNext} ${
+        columnNext && styles.columnNext
+      } ${rowPrev && styles.rowPrev} ${columnPrev && styles.columnPrev}
       `}
     >
       {mdxResult && mdxResult}

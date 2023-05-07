@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styles from "@/styles/PositionNavBtn.module.css";
 
 export default function PositionNavBtn({
@@ -18,22 +19,22 @@ export default function PositionNavBtn({
       chapter.position[1] === playColumn + 1 && chapter.position[0] === playRow,
   );
 
-  function handleTopBtn() {
+  function handleTopBtn(e) {
     const newColumn = playColumn - 1;
     setPlayColumn(newColumn);
   }
 
-  function handleRightBtn() {
+  function handleRightBtn(e) {
     const newRow = playRow + 1;
     setPlayRow(newRow);
   }
 
-  function handleButtomBtn() {
+  function handleButtomBtn(e) {
     const newColumn = playColumn + 1;
     setPlayColumn(newColumn);
   }
 
-  function handleLeftBtn() {
+  function handleLeftBtn(e) {
     const newRow = playRow - 1;
     setPlayRow(newRow);
   }

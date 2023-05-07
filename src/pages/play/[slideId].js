@@ -4,8 +4,7 @@ import styles from "@/styles/pages/play.module.css";
 import { v4 as uuidv4 } from "uuid";
 import getMdxParse from "@/utils/getMdxParse";
 import { getSession } from "next-auth/react";
-import axios, { all } from "axios";
-
+import axios from "axios";
 import PositionNavBtn from "@/components/PositionNavBtn";
 import ProgressBar from "@/components/ProgressBar";
 import PlaySlideItem from "@/components/play/PlaySlideItem";
@@ -65,7 +64,6 @@ export default function play({ slide }) {
 
     const offset = 2;
     let nowProgress;
-
     if (playRow === maxRow) {
       nowProgress = (100 / allChapter.length) * (playRow + playColumn + offset);
     } else {
