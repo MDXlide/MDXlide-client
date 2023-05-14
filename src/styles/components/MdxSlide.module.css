@@ -9,6 +9,7 @@
   justify-content: center;
   width: 50vw;
   aspect-ratio: 16 / 9;
+  padding: 1.5rem;
 
   box-shadow: 0 0 10px 10px var(--main-shadow);
   background-color: var(--main-black);
@@ -57,6 +58,10 @@
 .slide img {
   width: 100px;
   height: 100px;
+}
+
+.slide h1 {
+  font-size: 2rem;
 }
 
 /* animation */

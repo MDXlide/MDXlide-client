@@ -36,8 +36,8 @@ export default function Nav() {
         </li>
         <li>
           <Link
-            href={`/full${slideId}`}
-            className={router.pathname === "/full" && styles.active}
+            href={`/full/${slideId}`}
+            className={router.pathname === "/full/[slideId]" && styles.active}
           >
             FULL
           </Link>

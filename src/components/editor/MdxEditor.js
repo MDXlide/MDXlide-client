@@ -38,14 +38,16 @@ export default function MdxEditor() {
     }
   }
 
-  useInterval(autoSave, 10000);
+  useInterval(autoSave, 5000);
 
   return (
     <>
       <section className={styles.codeEditor}>
         <div className={styles.title}>
           <h3>MDX CODE</h3>
-          <span>what mdx?</span>
+          <span>
+            <a href="https://mdxjs.com/">what mdx?</a>
+          </span>
         </div>
         <textarea
           onChange={handleChangeUserCode}

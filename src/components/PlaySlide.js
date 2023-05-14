@@ -43,5 +43,9 @@ export default function PlaySlide() {
     useMdx();
   }, [chapters]);
 
-  return <div className={`${styles.fullSlide}`}>{mdxResult && mdxResult}</div>;
+  return (
+    <div className={styles.wrapper}>
+      <div className={`${styles.fullSlide}`}>{mdxResult && mdxResult}</div>
+    </div>
+  );
 }

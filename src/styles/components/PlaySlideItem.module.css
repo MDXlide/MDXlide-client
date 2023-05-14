@@ -1,16 +1,25 @@
-.item {
+.wrapper {
   display: flex;
-  position: absolute;
-  z-index: 1;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 16 / 9;
+  position: absolute;
+  z-index: 1;
+
   width: 100vw;
   height: 100vh;
-  margin-top: auto;
 
   color: var(--main-white);
   background-color: var(--main-black);
   transition: all 0.6s;
   overflow: hidden;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 16 / 9;
+
+  transform: scale(1.6, 1.6);
 }

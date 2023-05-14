@@ -1,8 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import styles from "@/styles/pages/full.module.css";
-import { v4 as uuidv4 } from "uuid";
-
 import Nav from "@/components/Nav.js";
 import FullSlideItem from "@/components/FullSlideItem";
 import getMdxParse from "@/utils/getMdxParse";
@@ -31,8 +29,8 @@ export default function full() {
       <Nav />
       <div className={styles.wrapper}>
         <main className={styles.slideItemWrapper}>
-          {allMdx?.map((mdx) => (
-            <FullSlideItem chapter={mdx} key={uuidv4()} />
+          {allMdx?.map((mdx, index) => (
+            <FullSlideItem chapter={mdx} key={index} />
           ))}
         </main>
       </div>

@@ -36,25 +36,41 @@ export default function editor({ slide }) {
   const [hiddenRowBtn, setHiddenRowBtn] = useState(false);
 
   useEffect(() => {
-    dispatch(setSlide(slide));
-  }, [slide]);
+    return () => autoSave();
+  }, []);
 
   useEffect(() => {
     if (column > 0) setHiddenRowBtn(true);
   }, [version]);
 
   useEffect(() => {
-    async function saveNewChapter() {
-      const userId = data.id;
-      const slideId = router.query.slideId;
-
-      const response = await axios.post(
-        `${DEFAULT_SERVER_URL}api/users/${userId}/slides/${slideId}/chapters`,
-        { chapters },
-      );
-    }
     saveNewChapter();
   }, [version]);
+
+  async function saveNewChapter() {
+    const userId = data.id;
+    const slideId = router.query.slideId;
+
+    const response = await axios.post(
+      `${DEFAULT_SERVER_URL}api/users/${userId}/slides/${slideId}/chapters`,
+      { chapters },
+    );
+  }
+
+  async function autoSave() {
+    const userId = data.id;
+    const slideId = router.query.slideId;
+    const lastSaveTime = new Date().toISOString().slice(0, 10);
+
+    try {
+      await axios.patch(
+        `${DEFAULT_SERVER_URL}api/users/${userId}/slides/${slideId}`,
+        { targetChapter, lastSaveTime },
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   function handleAddRowChapter() {
     const newRow = row + 1;
@@ -67,7 +83,7 @@ export default function editor({ slide }) {
       dispatch(setColumn(resetColumn));
       dispatch(
         insertRowChapter({
-          code: "row 삽입되었습니다",
+          code: "#row 중간 추가",
           newRow,
           column: resetColumn,
         }),
@@ -79,7 +95,7 @@ export default function editor({ slide }) {
       dispatch(setColumn(resetColumn));
       dispatch(
         addRowChapter({
-          code: DEFAULT_CHAPTER_USER_CODE,
+          code: `# ${newRow}Row`,
           newRow,
           column: resetColumn,
         }),
@@ -94,14 +110,14 @@ export default function editor({ slide }) {
       (chapter) =>
         chapter.position[1] === newColumn && chapter.position[0] === row,
     );
-    const code = `newcolumn ${newColumn} 추가 구현`;
+    const code = `# ${newColumn} column`;
 
     if (isNewColumn) {
       dispatch(isColumnNext(true));
       dispatch(setColumn(newColumn));
       dispatch(
         insertColumnChapter({
-          code: "column 중간 추가 구현 입니다",
+          code: "column 중간 추가",
           row,
           newColumn,
         }),

@@ -1,5 +1,4 @@
 import styles from "@/styles/components/PlaySlideItem.module.css";
-import { useEffect, useRef } from "react";
 
 export default function PlaySlideItem({ chapter, playPosition }) {
   const { mdxResult, position } = chapter;
@@ -10,8 +9,8 @@ export default function PlaySlideItem({ chapter, playPosition }) {
   };
 
   return (
-    <div className={styles.item} style={itemStyle}>
-      {mdxResult}
+    <div className={styles.wrapper} style={itemStyle}>
+      <div className={styles.item}>{mdxResult}</div>
     </div>
   );
 }

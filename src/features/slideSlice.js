@@ -8,8 +8,14 @@ const initialState = {
   chapters: [
     {
       position: [0, 0],
-      userCode:
-        "<div style={{padding: '1rem', backgroundColor: 'violet'}}>박스 예시입니다.</div>",
+      userCode: `## 안녕하세요 mdx 문법으로 slide를 제작할 수 있는 MDXSlide입니다.
+      <br/>
+      ### 슬라이드 추가 : 슬라이드 하단에 + 버튼을 클릭하면 슬라이드를 추가 할 수 있습니다.
+      ### 슬라이드 이동 : 슬라이드가 추가되면 이동할 수 있는 버튼이 활성화 됩니다!
+      ### Play : 슬라이드를 재생할 수 있어요.
+      ### Full : 전체 슬라이드를 확인하고 페이지로 이동할 수 있습니다.
+      <br/>
+        <div style={{padding: '1rem', backgroundColor: 'violet'}}>박스 예시입니다.</div>`,
     },
   ],
   lastSaveTime: "",

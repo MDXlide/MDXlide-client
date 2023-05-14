@@ -8,6 +8,7 @@ import axios from "axios";
 
 import { closeModal } from "../../features/modalSlice";
 import { DEFAULT_SERVER_URL } from "@/constants/url";
+import { setSlide } from "@/features/slideSlice";
 
 export default function ModalSlideTitle({ button }) {
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function ModalSlideTitle({ button }) {
     let result;
     try {
       result = await axios(axiosOption);
+      dispatch(setSlide(result));
     } catch (err) {
       /**
        * fix: errormodle 제작 예정

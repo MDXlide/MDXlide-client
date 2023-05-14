@@ -2,6 +2,7 @@
   position: relative;
   background-color: var(--main-white);
   box-shadow: 0 0 5px 2px var(--main-shadow);
+  height: 40vh;
 
   transition: all 0.5s;
 }
@@ -14,13 +15,23 @@
 .mdx {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 70%;
+  height: 60%;
+  padding: 1.5rem;
 
   color: var(--main-white);
   background-color: var(--main-black);
+  overflow: hidden;
 }
 
+.mdx h2 {
+  font-size: 0.4rem;
+}
+
+.mdx h3 {
+  font-size: 0.1rem;
+}
 /* describe */
 
 .describeWrapper {
